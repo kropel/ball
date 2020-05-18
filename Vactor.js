@@ -18,3 +18,5 @@ class Vector {
   set x(){}
   set y(){}
 }
+
+module.exports = Vector;
