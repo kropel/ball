@@ -1,5 +1,5 @@
 class Vector {
-  constructor({ x, y }) {
+  constructor({ x = 1, y = -1 }) {
     this.x = x;
     this.y = y;
   }
@@ -9,14 +9,10 @@ class Vector {
   reversY() {
     this.y = -this.y;
   }
-  get x() {
-    return this.x;
+  reversXY() {
+    this.x = -this.x;
+    this.y = -this.y;
   }
-  get y() {
-    return this.y;
-  }
-  set x(){}
-  set y(){}
 }
 
 module.exports = Vector;
