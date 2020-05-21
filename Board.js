@@ -1,21 +1,46 @@
+const FactoryCell = require("./cell/FactoryCell");
+
 class Board {
   constructor(board) {
-    this.board = board;
-    this.empty = "0";
-    this.ball = "1";
+    this.factoryCell = new FactoryCell();
+    this.board = this.setBoard(board);
   }
-  isEmpty({ x, y }) {
-    return this.board[x][y] === this.empty;
-  }
-  setEmtyCell({ x, y }) {
-    this.board[x][y] = this.empty;
-  }
-  setBallInCell({ x, y }) {
-    this.board[x][y] = this.ball;
-  }
-  getBorad() {
-    return this.board.map((row) => [...row]);
+  setBoard(board) {
+    let maxX = board[0].length - 1;
+    let maxY = board.length - 1;
+    let vectorModifer = "";
+    let type = "full";
+    return board.map((row, indexY) => {
+      let isBorderedY = ((indexY) => indexY === 0 || indexY === maxY)(indexY);
+
+      return row.map((symbol, indexX) => {
+        let isBorderedX = ((indexX) => indexX === 0 || indexX === maxX)(indexX);
+        let isCellEmpty = ((symbol) => symbol === "0" || symbol === "1")(
+          symbol
+        );
+        let isCellX = ((symbol) => symbol === "X")(symbol);
+
+        if ((isBorderedX && isBorderedY) || isCellX) {
+          vectorModifer = "xy";
+        } else if (isBorderedX) {
+          vectorModifer = "x";
+        } else if (isBorderedY) {
+          vectorModifer = "y";
+        } else if (isCellEmpty) {
+          vectorModifer = "e";
+          type = "empty";
+        } else {
+          //klocek na srodku planszy nie "X"
+          vectorModifer = "r";
+        }
+
+        if (symbol === "1") {
+          symbol = "0";
+        }
+
+        return this.factoryCell.getCell(symbol, type, vectorModifer);
+      });
+    });
   }
 }
-
 module.exports = Board;
