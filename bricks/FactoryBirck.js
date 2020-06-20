@@ -20,4 +20,4 @@ class FactoryBrick {
   }
 }
 
-module.export = FactoryBrick;
+module.exports = FactoryBrick;

@@ -4,14 +4,14 @@ const { getRandomInt, vectorModdifers } = require("../utils");
 class BrickY extends Brick {
   constructor(position) {
     super(position, "Y");
-    this.vectorModiffer = ({ x, y }) => {
-      this.vectorModiffer = super.vectorModiffer;
+    this.vectorModiffer = (vector) => {
+      this.vectorModiffer = vectorModdifers.empty;
       this.symbol = "0";
       const changeXdirection = !!getRandomInt(2);
       if (changeXdirection) {
-        return vectorModdifers.x(x, y);
+        return vectorModdifers.x(vector);
       } else {
-        return vectorModdifers.y(x, y);
+        return vectorModdifers.y(vector);
       }
     };
   }

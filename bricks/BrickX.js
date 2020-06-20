@@ -1,5 +1,5 @@
 const Brick = require("./Brick");
-const { vectorModdifers } = require("../utils");
+const { vectorModdifers, getRandomInt } = require("../utils");
 
 class BrickX extends Brick {
   constructor(position, bordered) {
@@ -18,7 +18,7 @@ class BrickX extends Brick {
         return vectorModdifers.y;
         break;
       default:
-        throw new Error("Wrong vector modiffer selector");
+        return (vector) => {};
     }
   }
 }
