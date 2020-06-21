@@ -18,7 +18,8 @@ class BrickX extends Brick {
         return vectorModdifers.y;
         break;
       default:
-        return (vector) => {};
+        return vectorModdifers.random;
+        break;
     }
   }
 }

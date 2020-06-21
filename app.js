@@ -8,7 +8,22 @@ const condion = (() => {
   return () => 100 <= i++;
 })();
 
-game.move(condion);
+let ballPlaceCondition = (() => {
+  const { x: Xstart, y: Ystart } = game.ball.position;
+  let counter = 0;
+  return () => {
+    let { x, y } = game.ball.position;
+    if (Xstart === x && Ystart === y) {
+      counter++;
+    }
+    if (counter >= 2) {
+      ballPlaceCondition = () => false;
+      return true;
+    }
+  };
+})();
+
+game.move(ballPlaceCondition);
 let id = null;
 const show2DArray = () => {
   let array = game.snapshots.shift();

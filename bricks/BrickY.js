@@ -1,5 +1,5 @@
 const Brick = require("./Brick");
-const { getRandomInt, vectorModdifers } = require("../utils");
+const { vectorModdifers } = require("../utils");
 
 class BrickY extends Brick {
   constructor(position) {
@@ -7,12 +7,7 @@ class BrickY extends Brick {
     this.vectorModiffer = (vector) => {
       this.vectorModiffer = vectorModdifers.empty;
       this.symbol = "0";
-      const changeXdirection = !!getRandomInt(2);
-      if (changeXdirection) {
-        return vectorModdifers.x(vector);
-      } else {
-        return vectorModdifers.y(vector);
-      }
+      return vectorModdifers.random(vector);
     };
   }
 }

@@ -1,7 +1,7 @@
 const getRandomInt = (max, min = 0) =>
   Math.floor(Math.random() * (max - min) + min);
 
-const vectorModdifers = {
+const methods = {
   x: ({ x, y }) => {
     return { x: -x, y };
   },
@@ -13,6 +13,17 @@ const vectorModdifers = {
   },
   empty: ({ x, y }) => {
     return { x, y };
+  },
+};
+
+const vectorModdifers = {
+  ...methods,
+  random: (vector, disallowed = ["empty"]) => {
+    const keys = Object.keys(methods).filter(
+      (item) => !disallowed.includes(item)
+    );
+    let randomIndex = getRandomInt(keys.length);
+    return methods[keys[randomIndex]](vector);
   },
 };
 
