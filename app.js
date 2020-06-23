@@ -11,15 +11,18 @@ const condion = (() => {
 let ballPlaceCondition = (() => {
   const { x: Xstart, y: Ystart } = game.ball.position;
   let counter = 0;
+  let done = false;
   return () => {
     let { x, y } = game.ball.position;
     if (Xstart === x && Ystart === y) {
       counter++;
     }
-    if (counter >= 2) {
-      ballPlaceCondition = () => false;
-      return true;
+    if (counter >= 1) {
+      done = true;
+      counter = 0;
+      return false;
     }
+    return done;
   };
 })();
 

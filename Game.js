@@ -43,9 +43,12 @@ class Game {
   }
 
   move(condition) {
-    while (!condition()) {
+    while (true) {
       this.makeSnapshot();
       this.findNextEmptyCell();
+      if (condition()) {
+        break;
+      }
     }
   }
 }
