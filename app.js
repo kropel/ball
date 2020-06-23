@@ -3,9 +3,9 @@ const { board } = require("./ExamInput");
 
 const game = new Game(board);
 
-const condion = (() => {
+const condition = (() => {
   let i = 0;
-  return () => 100 <= i++;
+  return () => 200 <= i++;
 })();
 
 let ballPlaceCondition = (() => {
@@ -26,7 +26,7 @@ let ballPlaceCondition = (() => {
   };
 })();
 
-game.move(ballPlaceCondition);
+game.move(condition);
 let id = null;
 const show2DArray = () => {
   let array = game.snapshots.shift();
@@ -36,4 +36,4 @@ const show2DArray = () => {
     clearInterval(id);
   }
 };
-id = setInterval(show2DArray, 200);
+id = setInterval(show2DArray, 100);
